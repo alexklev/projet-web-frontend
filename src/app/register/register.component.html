@@ -1,0 +1,87 @@
+<div class="wrapper">
+<section class="login-content">
+    <div class="container h-100">
+      <div class="row justify-content-center align-items-center height-self-center">
+          <div class="col-md-8 col-sm-12 col-12 align-self-center">
+            <div class="sign-user_card">
+                <div class="logo-detail">
+                      <div class="d-flex align-items-center">
+                        <img src="../assets/images/logo.png" class="img-fluid rounded-normal light-logo logo" alt="logo">
+                      </div>
+                </div>
+
+                <h3 class="mb-2">Creation de compte</h3>
+                <form>
+                  <div class="row">
+                      <div class="col-lg-6">
+                        <div class="floating-label form-group">
+                            <input class="floating-input form-control" type="text" [(ngModel)]="nom" name="nom" placeholder=" ">
+                            <label>Nom *</label>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="floating-label form-group">
+                            <input class="floating-input form-control" type="text" [(ngModel)]="prenom" name="prenom" placeholder=" ">
+                            <label>Prénom </label>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="floating-label form-group">
+                            <input class="floating-input form-control" type="text" [(ngModel)]="nationalite" name="nationalite" placeholder=" ">
+                            <label>Nationalité *</label>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="floating-label form-group">
+                            <input class="floating-input form-control" type="date" [(ngModel)]="naissance" name="naissance" placeholder=" ">
+                            <label>Date de naissance *</label>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="floating-label form-group">
+                            <input class="floating-input form-control" type="text" [(ngModel)]="tel" name="tel" placeholder=" ">
+                            <label>Téléphone *</label>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="floating-label form-group">
+                            <input class="floating-input form-control" type="email" [(ngModel)]="email" name="email" placeholder=" ">
+                            <label>Email *</label>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="floating-label form-group">
+                            <input class="floating-input form-control" type="text" [(ngModel)]="identifiant" name="identifiant" placeholder=" ">
+                            <label>Identifiant *</label>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="floating-label form-group">
+                            <input class="floating-input form-control" type="password" [(ngModel)]="pwd" name="pwd" placeholder=" ">
+                            <label>Mot de passe *</label>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="floating-label form-group">
+                            <input class="floating-input form-control" type="password" [(ngModel)]="cpwd" name="cpwd" placeholder=" ">
+                            <label>Confirmation de mot de passe *</label>
+                        </div>
+                      </div>
+                      <div class="col-lg-12" style="visibility: hidden;">
+                        <div class="custom-control custom-checkbox mb-3 text-left">
+                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                            <label class="custom-control-label" for="customCheck1">I agree with the terms of use</label>
+                        </div>
+                      </div>
+                  </div>
+                  <button type="submit" class="btn btn-primary" (click)="save()">Enregistrer</button>
+                  <p class="mt-3 mb-0">
+                      Vous avez déjà un compte ? <a [routerLink]="['/login']" class="text-primary"><b>Se connecter</b></a>
+                  </p>
+                </form>
+            </div>
+          </div>
+      </div>
+    </div>
+</section>
+</div>

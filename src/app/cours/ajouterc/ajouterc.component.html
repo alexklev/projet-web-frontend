@@ -1,0 +1,41 @@
+<h1 *ngIf="idclient == 0" mat-dialog-title>Ajouter un cours</h1>
+<h1 *ngIf="idclient != 0" mat-dialog-title>Modifier un cours</h1>
+
+<div mat-dialog-content>
+    <form>
+        <div class="row">
+          <div class="col-md-6">
+            <label class="form-label">Lié a une formation</label>
+            <ng-select
+              [items]="formations"
+              bindLabel="nom"
+              bindValue="id"
+              placeholder=""
+              appendTo="body"
+              [multiple]="true"
+              [(ngModel)]="idformation" name="idformation">
+            </ng-select>
+            <!-- <mat-select [(ngModel)]="idformation" name="idformation" multiple>
+              <option value=""></option>
+              <option *ngFor="let log of formations" [value]="log.id">{{log.nom}}</option>
+            </mat-select> -->
+          </div>
+          <div class="col-sm-6">
+              <label class="form-label">Nom *</label>
+              <input type="text" class="form-control" required name="nom" [(ngModel)]="nom">
+          </div>
+          <div class="col-sm-6">
+              <label class="form-label">Statut *</label>
+              <select class="form-control" [(ngModel)]="statut" name="statut">
+                <option value="1">Activé</option>
+                <option value="0">désactivé</option>
+              </select>
+          </div>
+        </div>
+    </form>
+</div>
+<div mat-dialog-actions style="justify-content: flex-end;">
+    <button class="btn btn-secondary" (click)="saveandclose()" *ngIf="isubmit == 0">Enregistrer</button>&nbsp;&nbsp;
+    <button class="btn btn-secondary" *ngIf="isubmit != 0">Enregistrement en cours......</button>&nbsp;&nbsp;
+    <button class="btn btn-primary" [mat-dialog-close]="" cdkFocusInitial>Fermer</button>
+</div>

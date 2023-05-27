@@ -1,0 +1,74 @@
+<h1 *ngIf="idclient == 0" mat-dialog-title>Ajouter un utilisateur</h1>
+<h1 *ngIf="idclient != 0" mat-dialog-title>Modifier un utilisateur</h1>
+
+<div mat-dialog-content>
+    <form>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="floating-label form-group">
+              <label class="form-label">Role *</label>
+              <select class="form-control" [(ngModel)]="role" name="role">
+                <option value="invité">Invité</option>
+                <option value="étudiant">Etudiant</option>
+                <option value="professeur">Professeur</option>
+                <option value="admin">Administrateur</option>
+                <option value="banni">Banni</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="floating-label form-group">
+                <label>Nom *</label>
+                <input class="form-control" type="text" [(ngModel)]="nom" name="nom" placeholder=" ">
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="floating-label form-group">
+                <label>Prénom </label>
+                <input class="form-control" type="text" [(ngModel)]="prenom" name="prenom" placeholder=" ">
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="floating-label form-group">
+                <label>Nationalité *</label>
+                <input class="form-control" type="text" [(ngModel)]="nationalite" name="nationalite" placeholder=" ">
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="floating-label form-group">
+                <label>Date de naissance *</label>
+                <input class="form-control" type="date" [(ngModel)]="naissance" name="naissance" placeholder=" ">
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="floating-label form-group">
+                <label>Téléphone *</label>
+                <input class="form-control" type="text" [(ngModel)]="tel" name="tel" placeholder=" ">
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="floating-label form-group">
+                <label>Email *</label>
+                <input class="form-control" type="email" [(ngModel)]="email" name="email" placeholder=" ">
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="floating-label form-group">
+                <label>Identifiant *</label>
+                <input class="form-control" type="text" [(ngModel)]="identifiant" name="identifiant" placeholder=" ">
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="floating-label form-group">
+                <label>Mot de passe *</label>
+                <input class="form-control" type="password" [(ngModel)]="pwd" name="pwd" placeholder=" ">
+            </div>
+          </div>
+        </div>
+    </form>
+</div>
+<div mat-dialog-actions style="justify-content: flex-end;">
+    <button class="btn btn-secondary" (click)="saveandclose()" *ngIf="isubmit == 0">Enregistrer</button>&nbsp;&nbsp;
+    <button class="btn btn-secondary" *ngIf="isubmit != 0">Enregistrement en cours......</button>&nbsp;&nbsp;
+    <button class="btn btn-primary" [mat-dialog-close]="" cdkFocusInitial>Fermer</button>
+</div>

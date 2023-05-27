@@ -1,0 +1,33 @@
+<h1  mat-dialog-title>Liste des inscriptions de la formation {{titre}}</h1>
+
+<div mat-dialog-content>
+    <form>
+        <div class="row">
+          <div class="col-sm-12">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Nom</th>
+                    <th>Prenom</th>
+                    <th>Date naissance</th>
+                    <th>Nationalite</th>
+                    <th>Etat</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let elt of types">
+                    <td>{{elt.nom}}</td>
+                    <td>{{elt.prenom}}</td>
+                    <td>{{elt.date_naissance | date:'dd/MM/yyyy'}}</td>
+                    <td>{{elt.nationalite}}</td>
+                    <td>{{elt.is_valider == '0' ? 'En attente de validation' : 'Validé'}}</td>
+                  </tr>
+                </tbody>
+              </table>
+          </div>
+        </div>
+    </form>
+</div>
+<div mat-dialog-actions style="justify-content: flex-end;">
+    <button class="btn btn-primary" [mat-dialog-close]="" cdkFocusInitial>Fermer</button>
+</div>

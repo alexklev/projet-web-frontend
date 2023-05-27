@@ -1,0 +1,92 @@
+<div class="wrapper">
+  <app-top></app-top>
+  <app-right></app-right>
+  <div class="content-page">
+    <div class="container-fluid note-details">
+      <div class="card card-block topnav-left">
+        <div class="card-header d-flex justify-content-between pb-1">
+          <div class="">
+            <h4>Modifier mes informations</h4>
+          </div>
+          <div class="card-header-toolbar d-flex align-items-center">
+            <button  class="btn btn-primary" style="background: black;border-color: black;">
+              Derniere connexion : {{lastdate | date:'dd-MM-YYYY H:i:s'}}</button>
+          </div>
+      </div>
+        <div class="card-body write-card">
+          <div class="row">
+            <div class="col-sm-12" style="text-align: center;">
+                <label for="inputFirstName" class="form-label">Photo</label><br>
+                <img [src]="imgprofile ? imgprofile : 'assets/images/camera_icon.png'" (click)='openimg1()' style="max-width: 100%;max-height: 120px;" />
+                <input type="file" class="form-control" id="idimg1" (change)="onFileChangecouverture($event)" style="display: none;" />
+            </div>
+            <div class="col-lg-6">
+              <div class="floating-label form-group">
+                <label class="form-label">Role *</label>
+                <select class="form-control" [(ngModel)]="role" name="role">
+                  <option value="invité">Invité</option>
+                  <option value="étudiant">Etudiant</option>
+                  <option value="professeur">Professeur</option>
+                  <option value="admin">Administrateur</option>
+                  <option value="banni">Banni</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="floating-label form-group">
+                  <label>Nom *</label>
+                  <input class="form-control" type="text" [(ngModel)]="nom" name="nom" placeholder=" ">
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="floating-label form-group">
+                  <label>Prénom </label>
+                  <input class="form-control" type="text" [(ngModel)]="prenom" name="prenom" placeholder=" ">
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="floating-label form-group">
+                  <label>Nationalité *</label>
+                  <input class="form-control" type="text" [(ngModel)]="nationalite" name="nationalite" placeholder=" ">
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="floating-label form-group">
+                  <label>Date de naissance *</label>
+                  <input class="form-control" type="date" [(ngModel)]="naissance" name="naissance" placeholder=" ">
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="floating-label form-group">
+                  <label>Téléphone *</label>
+                  <input class="form-control" type="text" [(ngModel)]="tel" name="tel" placeholder=" ">
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="floating-label form-group">
+                  <label>Email *</label>
+                  <input class="form-control" type="email" [(ngModel)]="email" name="email" placeholder=" ">
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="floating-label form-group">
+                  <label>Identifiant *</label>
+                  <input class="form-control" type="text" [(ngModel)]="identifiant" name="identifiant" placeholder=" ">
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="floating-label form-group">
+                  <label>Mot de passe *</label>
+                  <input class="form-control" type="password" [(ngModel)]="pwd" name="pwd" placeholder=" ">
+              </div>
+            </div>
+            <div class="col-lg-12" style="text-align: right;">
+              <button class="btn btn-secondary" (click)="save()">Modifier</button>&nbsp;&nbsp;
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Page end  -->
+    </div>
+  </div>
+</div>

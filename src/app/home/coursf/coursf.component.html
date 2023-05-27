@@ -1,0 +1,33 @@
+<h1  mat-dialog-title>Liste des cours de la formation {{titre}}</h1>
+
+<div mat-dialog-content>
+    <form>
+        <div class="row">
+          <div class="col-sm-12">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Nom</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let elt of types">
+                    <td>{{elt.nom}}</td>
+                    <td>
+                      <a *ngIf="role == 'admin'" (click)="opendelete(elt)" class="btn btn-danger" title="supprimer">
+                        <svg width="20" height="20" style="fill:white" class="svg-icon" id="iq-main-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" style="stroke-dasharray: 80, 100; stroke-dashoffset: 0;"></path>
+                        </svg>
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+          </div>
+        </div>
+    </form>
+</div>
+<div mat-dialog-actions style="justify-content: flex-end;">
+    <button class="btn btn-primary" [mat-dialog-close]="" cdkFocusInitial>Fermer</button>
+</div>

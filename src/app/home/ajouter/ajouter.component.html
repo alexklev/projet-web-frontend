@@ -1,0 +1,43 @@
+<h1 *ngIf="idclient == 0" mat-dialog-title>Ajouter une formation</h1>
+<h1 *ngIf="idclient != 0" mat-dialog-title>Modifier une formation</h1>
+
+<div mat-dialog-content>
+    <form>
+        <div class="row">
+          <div class="col-sm-6">
+              <label class="form-label">Nom *</label>
+              <input type="text" class="form-control" required name="nom" [(ngModel)]="nom">
+          </div>
+            <div class="col-sm-6">
+                <label class="form-label">Niveau*</label>
+                <select class="form-control" [(ngModel)]="niveau" name="niveau">
+                  <option value="Master">Master</option>
+                  <option value="Bac">Bac</option>
+                  <option value="BES">BES</option>
+                  <option value="DS">DS</option>
+                  <option value="DI">DI</option>
+                </select>
+            </div>
+            <div class="col-sm-6">
+                <label class="form-label">Statut *</label>
+                <select class="form-control" [(ngModel)]="statut" name="statut">
+                  <option value="1">Activé</option>
+                  <option value="0">désactivé</option>
+                </select>
+            </div>
+            <div class="col-sm-6">
+                <label class="form-label">Date de debut *</label>
+                <input type="date" class="form-control" required name="datedebut" [(ngModel)]="datedebut">
+            </div>
+            <div class="col-sm-6">
+                <label class="form-label">Date de fin *</label>
+                <input type="date" class="form-control" required name="datefin" [(ngModel)]="datefin">
+            </div>
+        </div>
+    </form>
+</div>
+<div mat-dialog-actions style="justify-content: flex-end;">
+    <button class="btn btn-secondary" (click)="saveandclose()" *ngIf="isubmit == 0">Enregistrer</button>&nbsp;&nbsp;
+    <button class="btn btn-secondary" *ngIf="isubmit != 0">Enregistrement en cours......</button>&nbsp;&nbsp;
+    <button class="btn btn-primary" [mat-dialog-close]="" cdkFocusInitial>Fermer</button>
+</div>

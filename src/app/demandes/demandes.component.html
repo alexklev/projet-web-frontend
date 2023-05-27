@@ -1,0 +1,105 @@
+<div class="wrapper">
+  <app-top></app-top>
+  <app-right></app-right>
+  <div class="content-page">
+    <div class="container-fluid note-details">
+      <div class="card card-block topnav-left">
+        <div class="card-header d-flex justify-content-between pb-1">
+          <div class="">
+            <h4>Liste des demandes d'inscriptions</h4>
+          </div>
+          <div class="card-header-toolbar d-flex align-items-center">
+
+          </div>
+      </div>
+        <div class="card-body write-card">
+          <div class="row">
+              <div class="col-md-12">
+                <div class="row" style="width: 100%;margin-bottom: 20px;">
+                  <div class="col-md-4">
+                    <label>Filtre par nom</label><br>
+                    <input type="text" [(ngModel)]="filtrenom" name="filtrenom" (keyup)="filtre()" class="form-control"/>
+                  </div>
+                  <div class="col-md-4">
+                    <label>Filtre formation</label><br>
+                    <select class="form-control" [(ngModel)]="filtreformation" name="filtreformation" (change)="filtre()" >
+                      <option value="">Tous</option>
+                      <option *ngFor="let log of formations" [value]="log.id">{{log.nom}}</option>
+                    </select>
+                  </div>
+                  <div class="col-md-4" *ngIf="role == 'admin'">
+                    <label>Filtre statut</label><br>
+                    <select class="form-control" [(ngModel)]="filtrestatut" name="filtrestatut" (change)="filtre()" >
+                      <option value="">Tous</option>
+                      <option value="0">En attente</option>
+                      <option value="1">Validé</option>
+                      <option value="-1">Refusé</option>
+                    </select>
+                  </div>
+                  <div class="col-md-12" style="margin-bottom:10px;margin-top:10px">
+                    <button class="btn btn-primary" (click)="exportTable('xlsx')">Exporter en excel</button>&nbsp;&nbsp;
+                    <button class="btn btn-primary" (click)="exportTable('csv')">Exporter en csv</button>&nbsp;&nbsp;
+                    <button class="btn btn-primary" (click)="exportTable('other')">Exporter en pdf</button>&nbsp;&nbsp;
+                  </div>
+                </div>
+                  <div class="table-responsive" #TABLE>
+                      <table mat-table #table [dataSource]="dataSource" #mytable class="table table-striped table-bordered" style="width:100%">
+                        <ng-container matColumnDef="nom">
+                          <th mat-header-cell *matHeaderCellDef> Nom </th>
+                          <td mat-cell *matCellDef="let element">{{element.nom}}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="prenom">
+                          <th mat-header-cell *matHeaderCellDef> Prenom </th>
+                          <td mat-cell *matCellDef="let element">{{element.prenom}}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="email">
+                          <th mat-header-cell *matHeaderCellDef> Email </th>
+                          <td mat-cell *matCellDef="let element">{{element.email}}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="telephone">
+                          <th mat-header-cell *matHeaderCellDef> Telephone </th>
+                          <td mat-cell *matCellDef="let element">{{element.telephone}}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="nationalite">
+                          <th mat-header-cell *matHeaderCellDef> Nationalite </th>
+                          <td mat-cell *matCellDef="let element">{{element.nationalite}}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="date_naissance">
+                          <th mat-header-cell *matHeaderCellDef> Naissance </th>
+                          <td mat-cell *matCellDef="let element">{{element.date_naissance | date:'dd-MM-YYYY'}}</td>
+                        </ng-container>
+
+                        <!-- Name Column -->
+                        <ng-container matColumnDef="is_valider" *ngIf="role == 'admin'">
+                          <th mat-header-cell *matHeaderCellDef> Statut </th>
+                          <td mat-cell *matCellDef="let element"> {{element.is_valider == '1' ? 'Validé' : (element.is_valider == '-1' ? 'Refusé' : 'En attente')}} </td>
+                        </ng-container>
+
+                      <!-- Action Column -->
+                      <ng-container matColumnDef="action">
+                        <th mat-header-cell *matHeaderCellDef> Action </th>
+                        <td mat-cell *matCellDef="let element" class="action-link">
+                          <a *ngIf="role == 'admin'" (click)="changestate(element,1)" class="btn btn-success" title="Valider">
+                            Valider
+                          </a>&nbsp;&nbsp;
+                          <a *ngIf="role == 'admin'" (click)="changestate(element,-1)" class="btn btn-danger" title="Refuser">
+                            Refuser
+                          </a>
+                        </td>
+                      </ng-container>
+
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                    <mat-paginator #paginator [pageSize]="pageSize"
+                      [pageSizeOptions]="pageSizeOptions" showFirstLastButtons  aria-label="Select page">
+                    </mat-paginator>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+      <!-- Page end  -->
+    </div>
+  </div>
+</div>

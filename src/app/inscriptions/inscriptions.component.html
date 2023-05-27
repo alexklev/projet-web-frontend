@@ -1,0 +1,108 @@
+<div class="wrapper">
+  <app-top></app-top>
+  <app-right></app-right>
+  <div class="content-page">
+    <div class="container-fluid note-details">
+      <div class="card card-block topnav-left">
+        <div class="card-header d-flex justify-content-between pb-1">
+          <div class="">
+            <h4>Liste de mes inscriptions</h4>
+          </div>
+          <div class="card-header-toolbar d-flex align-items-center">
+
+          </div>
+      </div>
+        <div class="card-body write-card">
+          <div class="row">
+              <div class="col-md-12">
+                <div class="row" style="width: 100%;margin-bottom: 20px;">
+                  <div class="col-md-3">
+                    <label>Filtre par nom</label><br>
+                    <input type="text" [(ngModel)]="filtrenom" name="filtrenom" (keyup)="filtre()" class="form-control"/>
+                  </div>
+                  <div class="col-md-3">
+                    <label>Filtre niveau</label><br>
+                    <select class="form-control" [(ngModel)]="filtreniveau" name="filtreniveau" (change)="filtre()" >
+                      <option value="">Tous</option>
+                      <option value="Master">Master</option>
+                      <option value="Bac">Bac</option>
+                      <option value="BES">BES</option>
+                      <option value="DS">DS</option>
+                      <option value="DI">DI</option>
+                    </select>
+                  </div>
+                  <div class="col-md-3">
+                    <label>Filtre date</label><br>
+                    <input type="date" [(ngModel)]="filtredate" name="filtredate" (change)="filtre()" class="form-control"/>
+                  </div>
+                  <div class="col-md-3">
+                    <label>Filtre statut</label><br>
+                    <select class="form-control" [(ngModel)]="filtrestatut" name="filtrestatut" (change)="filtre()" >
+                      <option value="">Tous</option>
+                      <option value="0">En attente</option>
+                      <option value="1">Validé</option>
+                      <option value="-1">Refusé</option>
+                    </select>
+                  </div>
+                  <div class="col-md-12" style="margin-bottom:10px;margin-top:10px">
+                    <button class="btn btn-primary" (click)="exportTable('xlsx')">Exporter en excel</button>&nbsp;&nbsp;
+                    <button class="btn btn-primary" (click)="exportTable('csv')">Exporter en csv</button>&nbsp;&nbsp;
+                    <button class="btn btn-primary" (click)="exportTable('other')">Exporter en pdf</button>&nbsp;&nbsp;
+                  </div>
+                </div>
+                  <div class="table-responsive" #TABLE>
+                      <table mat-table #table [dataSource]="dataSource"  #mytable class="table table-striped table-bordered" style="width:100%">
+                        <ng-container matColumnDef="nom">
+                          <th mat-header-cell *matHeaderCellDef> Nom </th>
+                          <td mat-cell *matCellDef="let element">{{element.nom}}</td>
+                        </ng-container>
+
+                        <!-- Name Column -->
+                        <ng-container matColumnDef="niveau">
+                          <th mat-header-cell *matHeaderCellDef> Niveau </th>
+                          <td mat-cell *matCellDef="let element"> {{element.niveau}} </td>
+                        </ng-container>
+
+                        <!-- Name Column -->
+                        <ng-container matColumnDef="date_debut">
+                          <th mat-header-cell *matHeaderCellDef> Date de debut </th>
+                          <td mat-cell *matCellDef="let element"> {{element.date_debut}} </td>
+                        </ng-container>
+
+                        <!-- Name Column -->
+                        <ng-container matColumnDef="date_fin">
+                          <th mat-header-cell *matHeaderCellDef> Date de fin </th>
+                          <td mat-cell *matCellDef="let element"> {{element.date_fin}} </td>
+                        </ng-container>
+
+                        <!-- Name Column -->
+                        <ng-container matColumnDef="is_valider">
+                          <th mat-header-cell *matHeaderCellDef> Statut </th>
+                          <td mat-cell *matCellDef="let element"> {{element.is_valider == '1' ? 'Validé' : (element.is_valider == '-1' ? 'Refusé' : 'En attente')}} </td>
+                        </ng-container>
+
+                      <!-- Action Column -->
+                      <ng-container matColumnDef="action">
+                        <th mat-header-cell *matHeaderCellDef> Action </th>
+                        <td mat-cell *matCellDef="let element" class="action-link">
+                          <a *ngIf="element.is_valider == '0'" (click)="removeinscription(element)" class="btn btn-danger" title="Annuler">
+                            Annuler
+                          </a>
+                        </td>
+                      </ng-container>
+
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                    <mat-paginator #paginator [pageSize]="pageSize"
+                      [pageSizeOptions]="pageSizeOptions" showFirstLastButtons  aria-label="Select page">
+                    </mat-paginator>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+      <!-- Page end  -->
+    </div>
+  </div>
+</div>
